@@ -4,27 +4,28 @@
 
 
 ## ERD
-Table memos {
-id integer [primary key]
-title varchar [not null]
-body text [note: 'Content of the memos']
-user_id integer [not null]
-password varchar
-created_at timestamp [not null]
-modified_at timestamp
-}
+Table memos {  
+id integer [primary key]  
+title varchar [not null]  
+body text [note: 'Content of the memos']  
+user_id integer [not null]  
+password varchar  
+created_at timestamp [not null]  
+modified_at timestamp  
+}  
 
-Table comments {
-id integer [primary key]
-memoId varchar [not null]
-body text [note: 'Content of the comments']
-user_id integer [not null]
-password varchar
-created_at timestamp [not null]
-modified_at timestamp
-}
+Table comments {  
+id integer [primary key]  
+memo_Id integer [not null]  
+body text [note: 'Content of the comments']  
+user_id integer [not null]  
+password varchar  
+created_at timestamp [not null]  
+modified_at timestamp  
+}  
+Ref: "comments"."memo_Id" < "memos"."id"
 
-![img.png](img.png)
+![img_1.png](img_1.png)
 
 ## 주의사항
 - 일정 작성, 수정, 조회 시 반환 받은 일정 정보에 `비밀번호`는 제외해야 합니다.
