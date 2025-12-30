@@ -7,6 +7,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Entity
 @Table(name = "memos")
@@ -22,6 +25,8 @@ public class Memo extends BaseEntity{
     @Column(nullable = false)
     private Long userId;
     private String password;
+    @OneToMany(mappedBy = "memo")
+    private List<Comment> comments = new ArrayList<>();
 
     public Memo(String title, String body, Long userId, String password) {
         this.title = title;
