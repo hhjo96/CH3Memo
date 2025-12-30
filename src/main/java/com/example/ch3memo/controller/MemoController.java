@@ -28,10 +28,15 @@ public class MemoController {
         return ResponseEntity.status(HttpStatus.OK).body(memoService.findAll());
     }
     //사용자아이디로조회
-    @GetMapping("/memos/{userId}")
+    @GetMapping("/users/{userId}/memos")
     public ResponseEntity<List<MemoGetResponse>> findByUserId(@PathVariable Long userId){
         return ResponseEntity.status(HttpStatus.OK).body(memoService.findByUserId(userId));
     }
 
+    //단건조회
+    @GetMapping("/memos/{memoId}")
+    public ResponseEntity<MemoGetResponse> findOne(@PathVariable Long memoId){
+        return ResponseEntity.status(HttpStatus.OK).body(memoService.findByMemoId(memoId));
+    }
 
 }
