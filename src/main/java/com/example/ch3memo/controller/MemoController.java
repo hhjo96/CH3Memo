@@ -1,8 +1,6 @@
 package com.example.ch3memo.controller;
 
-import com.example.ch3memo.dto.MemoCreateRequest;
-import com.example.ch3memo.dto.MemoCreateResponse;
-import com.example.ch3memo.dto.MemoGetResponse;
+import com.example.ch3memo.dto.*;
 import com.example.ch3memo.service.MemoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -37,6 +35,12 @@ public class MemoController {
     @GetMapping("/memos/{memoId}")
     public ResponseEntity<MemoGetResponse> findOne(@PathVariable Long memoId){
         return ResponseEntity.status(HttpStatus.OK).body(memoService.findByMemoId(memoId));
+    }
+
+    //u
+    @PutMapping("/memos/{memoId}")
+    public ResponseEntity<MemoUpdateResponse>  update(@PathVariable Long memoId, @RequestBody MemoUpdateRequest request){
+        return ResponseEntity.status(HttpStatus.OK).body(memoService.update(memoId, request));
     }
 
 }
