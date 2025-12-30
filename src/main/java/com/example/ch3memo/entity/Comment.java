@@ -1,7 +1,6 @@
 package com.example.ch3memo.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -11,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "comments")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Comments extends BaseEntity{
+public class Comment extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +23,7 @@ public class Comments extends BaseEntity{
     @Column
     private String password;
 
-    public Comments(Memo memo, String body, Long userId, String password) {
+    public Comment(Memo memo, String body, Long userId, String password) {
         this.memo = memo;
         this.body = body;
         this.userId = userId;

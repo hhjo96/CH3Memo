@@ -26,7 +26,7 @@ public class Memo extends BaseEntity{
     private Long userId;
     private String password;
     @OneToMany(mappedBy = "memo")
-    private List<Comments> comments = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 
     public Memo(String title, String body, Long userId, String password) {
         this.title = title;
