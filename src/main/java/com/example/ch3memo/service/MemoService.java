@@ -48,10 +48,21 @@ public class MemoService {
         return new MemoGetResponse(memo.getId(), memo.getTitle(), memo.getBody(), memo.getUserId(), memo.getCreatedAt(), memo.getModifiedAt());
     }
 
+    //u
     @Transactional
     public MemoUpdateResponse update(Long memoId, MemoUpdateRequest request ){
         Memo memo = memoRepository.findById(memoId).orElseThrow(() -> new IllegalStateException("메모가 없습니다."));
         memo.update(request.getTitle(), request.getUserId());
         return new MemoUpdateResponse(memo.getId(), memo.getTitle(), memo.getBody(), memo.getUserId(), memo.getCreatedAt(), memo.getModifiedAt());
+    }
+
+    //d
+    @Transactional
+    public void delete(Long memoId){
+        boolean existence = memoRepository.existsById(memoId);
+        if (!existence) {
+            throw new IllegalStateException("메모가 없습니다");
+        }
+        memoRepository.deleteById(memoId);
     }
 }

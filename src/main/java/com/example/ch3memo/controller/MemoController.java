@@ -3,6 +3,7 @@ package com.example.ch3memo.controller;
 import com.example.ch3memo.dto.*;
 import com.example.ch3memo.service.MemoService;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.http.parser.HttpHeaderParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +42,13 @@ public class MemoController {
     @PutMapping("/memos/{memoId}")
     public ResponseEntity<MemoUpdateResponse>  update(@PathVariable Long memoId, @RequestBody MemoUpdateRequest request){
         return ResponseEntity.status(HttpStatus.OK).body(memoService.update(memoId, request));
+    }
+
+    //d
+    @DeleteMapping("/memos/{memoId}")
+    public ResponseEntity<Void> delete(@PathVariable Long memoId){
+        memoService.delete(memoId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }
