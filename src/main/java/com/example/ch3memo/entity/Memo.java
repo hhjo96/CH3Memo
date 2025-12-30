@@ -31,7 +31,8 @@ public class Memo extends BaseEntity{
         this.password = password;
     }
 
-    public void update(String text) {
-        this.body = text;
+    public void update(String title, Long userId) {
+        this.title = title;
+        this.userId = userId;
     }
 }
