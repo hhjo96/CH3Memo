@@ -9,15 +9,15 @@ import java.time.LocalDateTime;
 public class CommentCreateResponse {
     private final Long id;
     private final String body;
-    private final Long userId;
+    private final String userName;
     private final Long memoId;
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-    public CommentCreateResponse(Long id, String body, Long userId, Long memoId,LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    public CommentCreateResponse(Long id, String body, String userName, Long memoId,LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.body = body;
-        this.userId = userId;
+        this.userName = userName;
         this.memoId = memoId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;

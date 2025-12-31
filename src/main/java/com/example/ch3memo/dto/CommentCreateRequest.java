@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public class CommentCreateRequest {
     private String body;
-    private Long userId;
+    private String userName;
     private String password;
 
 }
