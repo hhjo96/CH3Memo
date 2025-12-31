@@ -34,7 +34,7 @@ public class MemoController {
         return ResponseEntity.status(HttpStatus.OK).body(memoService.findByUserId(userId));
     }
 
-    //일정만단건조회
+    //일정단건조회
     @GetMapping("/memos/{memoId}")
     public ResponseEntity<MemoGetResponse> findOne(@PathVariable Long memoId){
         return ResponseEntity.status(HttpStatus.OK).body(memoService.findByMemoId(memoId));
