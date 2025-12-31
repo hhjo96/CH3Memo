@@ -16,11 +16,11 @@ public class Comment extends BaseEntity{
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "memoId", nullable = false)
     private Memo memo;
-    @Size(max = 200) @Column(length = 700)
+    @Size(max = 100) @Column(length = 100, nullable = false)
     private String body;
     @Column(nullable = false)
     private Long userId;
-    @Column
+    @Column(nullable = false)
     private String password;
 
     public Comment(Memo memo, String body, Long userId, String password) {
