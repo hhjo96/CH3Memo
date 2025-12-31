@@ -18,12 +18,13 @@ public class Memo extends BaseEntity{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank @Size(max = 30) @Column(length = 100, nullable = false) // 한글 30글자가 db length 30보다 클 수 있다고 하여 수정
+    @NotBlank @Size(max = 30) @Column(length = 30, nullable = false)
     private String title;
-    @Size(max = 200) @Column(length = 700)
+    @Size(max = 200) @Column(length = 200, nullable = false)
     private String body;
     @Column(nullable = false)
     private Long userId;
+    @Column(nullable = false)
     private String password;
     @OneToMany(mappedBy = "memo")
     private List<Comment> comments = new ArrayList<>();
