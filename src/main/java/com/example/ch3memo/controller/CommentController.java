@@ -17,7 +17,7 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    //create
+    //c
     @PostMapping("/memos/{memoId}/comments")
     public ResponseEntity<CommentCreateResponse> create(@Valid @PathVariable Long memoId, @RequestBody CommentCreateRequest request){
         return ResponseEntity.status(HttpStatus.CREATED).body(commentService.save(memoId, request));
