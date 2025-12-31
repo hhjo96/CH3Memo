@@ -3,6 +3,7 @@ package com.example.ch3memo.service;
 import com.example.ch3memo.dto.CommentCreateRequest;
 import com.example.ch3memo.dto.CommentCreateResponse;
 
+import com.example.ch3memo.dto.CommentGetResponse;
 import com.example.ch3memo.dto.MemoCommentGetResponse;
 import com.example.ch3memo.entity.Comment;
 import com.example.ch3memo.entity.Memo;
@@ -12,6 +13,9 @@ import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,5 +35,19 @@ public class CommentService {
         return new CommentCreateResponse(savedComment.getId(), savedComment.getBody(), savedComment.getUserId(),
                 savedComment.getMemo().getId(), savedComment.getCreatedAt(), savedComment.getModifiedAt());
     }
+    //댓글 전체조회
+    @Transactional(readOnly = true)
+    public List<CommentGetResponse> findAllByMemoId(Long memoId){
+        Memo memo = memoRepository.findById(memoId).orElseThrow(() -> new IllegalStateException("메모가 없습니다."));
+        List<Comment> comments = memo.getComments();
+        List<CommentGetResponse> commentGetResponses = new ArrayList<>();
 
+        for(Comment comment : comments) {
+            CommentGetResponse commentResponse =
+                    new CommentGetResponse(comment.getId(), comment.getBody(), comment.getUserId(), comment.getPassword());
+            commentGetResponses.add(commentResponse);
+        }
+
+        return commentGetResponses;
+    }
 }
