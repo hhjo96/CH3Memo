@@ -1,12 +1,14 @@
 package com.example.ch3memo.service;
 
 import com.example.ch3memo.dto.*;
+import com.example.ch3memo.entity.Comment;
 import com.example.ch3memo.entity.Memo;
 import com.example.ch3memo.repository.MemoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,12 +43,28 @@ public class MemoService {
                 memo.getUserId(), memo.getCreatedAt(), memo.getModifiedAt())).toList();
     }
 
-    //단건조회
+    //메모단건조회
     @Transactional(readOnly = true)
     public MemoGetResponse findByMemoId(Long memoId){
         Memo memo = memoRepository.findById(memoId).orElseThrow(() -> new IllegalStateException("메모가 없습니다."));
         return new MemoGetResponse(memo.getId(), memo.getTitle(), memo.getBody(), memo.getUserId(), memo.getCreatedAt(), memo.getModifiedAt());
     }
+
+    //메모와댓글같이조회
+    public MemoCommentGetResponse findByMemoIdAndComments(Long memoId) {
+        Memo memo = memoRepository.findById(memoId).orElseThrow(() -> new IllegalStateException("메모가 없습니다."));
+        List<Comment> comments = memo.getComments();
+        List<CommentGetResponse> commentGetResponses = new ArrayList<>();
+
+        for(Comment comment : comments) {
+            CommentGetResponse commentResponse =
+                    new CommentGetResponse(comment.getId(), comment.getBody(), comment.getUserId(), comment.getPassword());
+            commentGetResponses.add(commentResponse);
+        }
+
+        return new MemoCommentGetResponse(memo.getId(), memo.getTitle(), memo.getBody(), memo.getUserId(), memo.getCreatedAt(), memo.getModifiedAt(), commentGetResponses);
+    }
+
 
     //u
     @Transactional

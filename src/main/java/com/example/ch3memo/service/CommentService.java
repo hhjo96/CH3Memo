@@ -3,11 +3,13 @@ package com.example.ch3memo.service;
 import com.example.ch3memo.dto.CommentCreateRequest;
 import com.example.ch3memo.dto.CommentCreateResponse;
 
+import com.example.ch3memo.dto.MemoCommentGetResponse;
 import com.example.ch3memo.entity.Comment;
 import com.example.ch3memo.entity.Memo;
 import com.example.ch3memo.repository.CommentsRepository;
 import com.example.ch3memo.repository.MemoRepository;
 import lombok.RequiredArgsConstructor;
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
