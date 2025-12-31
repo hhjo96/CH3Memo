@@ -3,8 +3,8 @@ package com.example.ch3memo.controller;
 import com.example.ch3memo.dto.*;
 import com.example.ch3memo.service.CommentService;
 import com.example.ch3memo.service.MemoService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.http.parser.HttpHeaderParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ public class MemoController {
 
     //c
     @PostMapping("/memos")
-    public ResponseEntity<MemoCreateResponse> create(@Valid @RequestBody MemoCreateRequest request){
+    public ResponseEntity<MemoCreateResponse> create(@RequestBody MemoCreateRequest request){
         return ResponseEntity.status(HttpStatus.CREATED).body(memoService.save(request));
     }
 
@@ -49,7 +49,7 @@ public class MemoController {
 
     //u
     @PutMapping("/memos/{memoId}")
-    public ResponseEntity<MemoUpdateResponse>  update(@PathVariable Long memoId, @Valid @RequestBody MemoUpdateRequest request){
+    public ResponseEntity<MemoUpdateResponse>  update(@PathVariable Long memoId, @RequestBody MemoUpdateRequest request){
         return ResponseEntity.status(HttpStatus.OK).body(memoService.update(memoId, request));
     }
 
