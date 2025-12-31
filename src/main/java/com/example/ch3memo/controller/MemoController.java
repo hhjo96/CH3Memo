@@ -55,8 +55,8 @@ public class MemoController {
 
     //d
     @DeleteMapping("/memos/{memoId}")
-    public ResponseEntity<Void> delete(@PathVariable Long memoId){
-        memoService.delete(memoId);
+    public ResponseEntity<Void> delete(@PathVariable Long memoId, @RequestBody MemoDeleteRequest request){
+        memoService.delete(memoId, request);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

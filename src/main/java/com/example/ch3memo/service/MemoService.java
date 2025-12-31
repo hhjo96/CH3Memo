@@ -63,16 +63,20 @@ public class MemoService {
     @Transactional
     public MemoUpdateResponse update(Long memoId, MemoUpdateRequest request ){
         Memo memo = memoRepository.findById(memoId).orElseThrow(() -> new IllegalStateException("메모가 없습니다."));
+        if(!request.getPassword().equals(memo.getPassword())){
+            throw new IllegalStateException("비밀번호가 틀립니다.");
+        }
         memo.update(request.getTitle(), request.getUserId());
         return new MemoUpdateResponse(memo.getId(), memo.getTitle(), memo.getBody(), memo.getUserId(), memo.getCreatedAt(), memo.getModifiedAt());
     }
 
     //d
     @Transactional
-    public void delete(Long memoId){
-        boolean existence = memoRepository.existsById(memoId);
-        if (!existence) {
-            throw new IllegalStateException("메모가 없습니다");
+    public void delete(Long memoId, MemoDeleteRequest request){
+        //메모가 있는지 검사 후 비밀번호 검사
+        Memo memo = memoRepository.findById(memoId).orElseThrow(() -> new IllegalStateException("메모가 없습니다."));
+        if(!request.getPassword().equals(memo.getPassword())){
+            throw new IllegalStateException("비밀번호가 틀립니다.");
         }
         memoRepository.deleteById(memoId);
     }
