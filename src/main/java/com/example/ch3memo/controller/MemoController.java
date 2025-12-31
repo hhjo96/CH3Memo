@@ -25,13 +25,8 @@ public class MemoController {
 
     //전체조회
     @GetMapping("/memos")
-    public ResponseEntity<List<MemoGetResponse>> findAll(){
-        return ResponseEntity.status(HttpStatus.OK).body(memoService.findAll());
-    }
-    //사용자아이디로조회
-    @GetMapping("/users/{userId}/memos")
-    public ResponseEntity<List<MemoGetResponse>> findByUserId(@PathVariable Long userId){
-        return ResponseEntity.status(HttpStatus.OK).body(memoService.findByUserId(userId));
+    public ResponseEntity<List<MemoGetResponse>> findAll(@RequestParam(required = false) String userName){
+        return ResponseEntity.status(HttpStatus.OK).body(memoService.findByUserName(userName));
     }
 
     //일정단건조회

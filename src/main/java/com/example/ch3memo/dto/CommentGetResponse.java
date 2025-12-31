@@ -10,13 +10,13 @@ public class CommentGetResponse {
 
     private final Long id;
     private final String body;
-    private final Long userId;
+    private final String userName;
     private final String password;
 
-    public CommentGetResponse(Long id, String body, Long userId, String password) {
+    public CommentGetResponse(Long id, String body, String userName, String password) {
         this.id = id;
         this.body = body;
-        this.userId = userId;
+        this.userName = userName;
         this.password = password;
     }
 

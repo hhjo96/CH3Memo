@@ -19,14 +19,14 @@ public class Comment extends BaseEntity{
     @Size(max = 100) @Column(length = 100, nullable = false)
     private String body;
     @Column(nullable = false)
-    private Long userId;
+    private String userName;
     @Column(nullable = false)
     private String password;
 
-    public Comment(Memo memo, String body, Long userId, String password) {
+    public Comment(Memo memo, String body, String userName, String password) {
         this.memo = memo;
         this.body = body;
-        this.userId = userId;
+        this.userName = userName;
         this.password = password;
     }
 }

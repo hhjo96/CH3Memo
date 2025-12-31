@@ -38,18 +38,10 @@ Lv 7. 유저의 입력에 대한 검증 수행
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-## 일정 전체 조회
+## 일정 전체 조회(?userName= 무관)
 ### Method: GET
 >```
 >{{baseURL}}/memos
->```
-
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-
-## 일정 사용자아이디로 조회
-### Method: GET
->```
->{{baseURL}}/users/1/memos
 >```
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
@@ -102,7 +94,7 @@ Lv 7. 유저의 입력에 대한 검증 수행
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-## 메모와 댓글 같이 조회
+##  메모와 댓글 같이 조회
 ### Method: GET
 >```
 >undefined
@@ -113,16 +105,17 @@ Lv 7. 유저의 입력에 대한 검증 수행
 
 
 
+
 # ERD
 
-![img_1.png](img_1.png)
+![img.png](img.png)
 
 Table memos {  
 id integer [primary key]  
 title varchar [not null]  
-body text [note: 'Content of the memos']  
-user_id integer [not null]  
-password varchar  
+body text [not null]
+user_name varchar [not null]  
+password varchar [not null]
 created_at timestamp [not null]  
 modified_at timestamp  
 }
@@ -130,11 +123,10 @@ modified_at timestamp
 Table comments {  
 id integer [primary key]  
 memo_Id integer [not null]  
-body text [note: 'Content of the comments']  
-user_id integer [not null]  
-password varchar  
+body text [not null]
+user_name varchar [not null]
+password varchar  [not null]
 created_at timestamp [not null]  
 modified_at timestamp  
 }  
 Ref: "comments"."memo_Id" < "memos"."id"
-

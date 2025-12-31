@@ -8,7 +8,7 @@ import java.util.List;
 public interface MemoRepository extends JpaRepository<Memo, Long> {
 
     //userId 것만 조회-수정일기준
-    List<Memo> findAllByUserIdOrderByModifiedAtDesc(Long userId);
+    List<Memo> findAllByUserNameOrderByModifiedAtDesc(String userName);
 
     //전체조회-수정일기준
     List<Memo> findAllByOrderByModifiedAtDesc();

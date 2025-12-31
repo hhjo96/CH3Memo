@@ -23,21 +23,21 @@ public class Memo extends BaseEntity{
     @Size(max = 200) @Column(length = 200, nullable = false)
     private String body;
     @Column(nullable = false)
-    private Long userId;
+    private String userName;
     @Column(nullable = false)
     private String password;
     @OneToMany(mappedBy = "memo")
     private List<Comment> comments = new ArrayList<>();
 
-    public Memo(String title, String body, Long userId, String password) {
+    public Memo(String title, String body, String userName, String password) {
         this.title = title;
         this.body = body;
-        this.userId = userId;
+        this.userName = userName;
         this.password = password;
     }
 
-    public void update(String title, Long userId) {
+    public void update(String title, String userName) {
         this.title = title;
-        this.userId = userId;
+        this.userName = userName;
     }
 }

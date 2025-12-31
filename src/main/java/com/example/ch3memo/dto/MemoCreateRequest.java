@@ -6,6 +6,6 @@ import lombok.Getter;
 public class MemoCreateRequest {
     private String title;
     private String body;
-    private Long userId;
+    private String userName;
     private String password;
 }

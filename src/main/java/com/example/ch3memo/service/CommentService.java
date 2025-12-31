@@ -30,9 +30,9 @@ public class CommentService {
             throw new IllegalStateException("댓글은 10개까지만 작성할 수 있습니다.");
         }
         Memo memo = memoRepository.findById(memoId).orElseThrow(() -> new IllegalStateException("메모가 없습니다."));
-        Comment comment = new Comment(memo, request.getBody(), request.getUserId(), request.getPassword());
+        Comment comment = new Comment(memo, request.getBody(), request.getUserName(), request.getPassword());
         Comment savedComment = commentsRepository.save(comment);
-        return new CommentCreateResponse(savedComment.getId(), savedComment.getBody(), savedComment.getUserId(),
+        return new CommentCreateResponse(savedComment.getId(), savedComment.getBody(), savedComment.getUserName(),
                 savedComment.getMemo().getId(), savedComment.getCreatedAt(), savedComment.getModifiedAt());
     }
     //댓글 전체조회
@@ -44,7 +44,7 @@ public class CommentService {
 
         for(Comment comment : comments) {
             CommentGetResponse commentResponse =
-                    new CommentGetResponse(comment.getId(), comment.getBody(), comment.getUserId(), comment.getPassword());
+                    new CommentGetResponse(comment.getId(), comment.getBody(), comment.getUserName(), comment.getPassword());
             commentGetResponses.add(commentResponse);
         }
 

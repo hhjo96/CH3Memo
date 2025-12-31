@@ -5,6 +5,6 @@ import lombok.Getter;
 @Getter
 public class MemoUpdateRequest {
     private String title;
-    private Long userId;
+    private String userName;
     private String password;
 }
