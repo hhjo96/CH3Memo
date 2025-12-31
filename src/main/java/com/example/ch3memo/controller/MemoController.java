@@ -1,6 +1,7 @@
 package com.example.ch3memo.controller;
 
 import com.example.ch3memo.dto.*;
+import com.example.ch3memo.service.CommentService;
 import com.example.ch3memo.service.MemoService;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.http.parser.HttpHeaderParser;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemoController {
     private final MemoService memoService;
+    private final CommentService commentService;
 
     //c
     @PostMapping("/memos")
@@ -32,11 +34,18 @@ public class MemoController {
         return ResponseEntity.status(HttpStatus.OK).body(memoService.findByUserId(userId));
     }
 
-    //단건조회
+    //일정만단건조회
     @GetMapping("/memos/{memoId}")
     public ResponseEntity<MemoGetResponse> findOne(@PathVariable Long memoId){
         return ResponseEntity.status(HttpStatus.OK).body(memoService.findByMemoId(memoId));
     }
+
+    //일정 단건과 댓글도 같이 조회
+    @GetMapping("/memos/{memoId}/comments")
+    public ResponseEntity<MemoCommentGetResponse> findByMemoId(@PathVariable Long memoId){
+        return ResponseEntity.status(HttpStatus.OK).body(memoService.findByMemoIdAndComments(memoId));
+    }
+
 
     //u
     @PutMapping("/memos/{memoId}")
